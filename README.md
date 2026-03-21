@@ -219,3 +219,7 @@
 ## 11. 画面遷移図
 
 https://www.figma.com/design/XxCZn23u0QFDpx2AviMBRp/%E3%81%8B%E3%82%89%E3%81%A0%E3%81%B3%E3%82%88%E3%82%8A_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&p=f&t=qbrNPBG2yRTgO4rd-0
+
+## 12. ER図
+
+[![Image from Gyazo](https://i.gyazo.com/11c37ccc2014324f2fc4170a6bb7cd69.png)](https://gyazo.com/11c37ccc2014324f2fc4170a6bb7cd69)
