@@ -1,21 +1,33 @@
-FROM ruby:3.2.3
+FROM ruby:3.4.7
 
 ENV LANG C.UTF-8
 ENV TZ Asia/Tokyo
 
-RUN apt-get update -qq && apt-get install -y \
-    postgresql-client \
-    nodejs \
-    yarn \
-    vim \
-  && rm -rf /var/lib/apt/lists/*
+# 必要なパッケージのインストール
+RUN apt-get update -qq && \
+    apt-get install -y build-essential libpq-dev nodejs npm && \
+    rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
+# Yarn のインストール
+RUN npm install -g yarn
 
-COPY Gemfile ./
+# アプリケーションディレクトリの作成
+WORKDIR /myapp
 
+# Gemfile を先にコピー
+COPY Gemfile Gemfile.lock ./
+
+# bundle install を実行
 RUN bundle install
 
+# アプリケーションのコードをコピー
 COPY . .
 
-CMD ["bash"]
+# bin/rails に実行権限を付与
+# RUN chmod +x bin/rails bin/rake bin/setup
+
+# ポートを公開
+EXPOSE 3000
+
+# 起動コマンド（修正）
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]
