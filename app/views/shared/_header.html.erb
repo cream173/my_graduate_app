@@ -8,10 +8,10 @@
 
     <!-- 右側ボタン -->
     <div class="flex items-center space-x-4">
-      <%= link_to "ログイン", "#",
+      <%= link_to "ログイン", new_user_session_path,
         class: "px-4 py-2 text-sm text-gray-600 hover:text-pink-400 transition" %>
 
-      <%= link_to "新規登録", "#",
+      <%= link_to "新規登録", new_user_registration_path,
         class: "px-5 py-2 text-sm bg-green-300 text-white rounded-xl hover:bg-green-500 shadow-sm transition" %>
     </div>
 
