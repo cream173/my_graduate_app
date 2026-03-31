@@ -1,0 +1,19 @@
+  <div class="mb-8 text-center">
+    <p class="text-gray-700">
+      今日も一日お疲れさま
+    </p>
+
+    <span class="font-semibold">
+      <%= current_user.name %>
+    </span>
+      さん
+    <p class="text-sm text-gray-500 mt-1">
+      今週の体調
+    </p>
+
+    <p class="text-sm text-gray-500 mt-1">
+      メッセージ
+    </p>
+
+    <%= link_to "体調を記録する", "#", class: "px-7 py-3 text-sm bg-pink-300 text-white rounded-xl hover:bg-pink-400 shadow-sm transition" %>
+  </div>
