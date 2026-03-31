@@ -23,10 +23,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen">
     <%= render 'shared/header' %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <main class="flex-grow">
     <%= yield %>
+    </main>
+
+    <%= render 'shared/footer' %>
+    
   </body>
 </html>

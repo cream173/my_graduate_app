@@ -1,0 +1,35 @@
+<footer class="w-full border-b bg-[#7a9a3a] min-h-[70px] flex items-center justify-center">
+  <div class="mx-auto w-full max-w-screen-md">
+    <% if user_signed_in? %>
+      <%# --- ログイン後のみ表示 --- %>
+      <ul class="flex items-center justify-around w-full text-[11px]">
+        <li>
+          <%= link_to "#", class: "flex flex-col items-center gap-1" do %>
+          <%= image_tag "", class: "w-8 h-8", alt: "ホーム" %>
+            <span class="font-semibold">ホーム</span>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to "#", class: "flex flex-col items-center gap-1" do %>
+            <%= image_tag "", class: "w-8 h-8", alt: "記録する" %>
+            <span class="font-semibold">記録する</span>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to "#", class: "flex flex-col items-center gap-1" do %>
+            <%= image_tag "", class: "w-8 h-8", alt: "記録一覧" %>
+            <span class="font-semibold">記録一覧</span>
+          <% end %>
+        </li>
+      </ul>
+
+    <% else %>
+      <%# --- ログイン前のみ表示 --- %>
+      <div class="flex items-center justify-center">
+        <p class="text-white/50 text-xs">&copy; 2026 からだびより</p>
+      </div>
+    <% end %>
+  </div>
+</footer>
