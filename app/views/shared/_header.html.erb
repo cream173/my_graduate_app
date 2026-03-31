@@ -14,7 +14,7 @@
         <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete },
             class: "px-5 py-2 text-sm bg-green-300 text-white rounded-xl hover:bg-green-500 shadow-sm transition" %>
       <% else %>
-        <%# --- ログイン前（未ログイン）のみ表示 --- %>
+        <%# --- ログイン前のみ表示 --- %>
         <%= link_to "ログイン", new_user_session_path,
             class: "px-4 py-2 text-sm text-white hover:text-green-200 transition" %>
 
