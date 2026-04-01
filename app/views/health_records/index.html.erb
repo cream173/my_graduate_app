@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "記録一覧" %>
+
+<div class="min-h-screen bg-[#F9F9F7] pt-10 pb-20">
+  <h1 class="text-center text-3xl text-[#8C8273] font-serif">記録一覧</h1>
+  <p class="text-center pb-10 text-[10px] text-[#A8A297] tracking-widest uppercase font-light">The Journey of Balance</p>
+    <div class="max-w-md mx-auto px-1 space-y-10">
+      <% @health_records.each do |health_record| %>
+        <%= render health_record %>
+      <% end %>
+    </div>
+</div>

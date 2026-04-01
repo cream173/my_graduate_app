@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :health_records
   get "dashboards/index"
   devise_for :users
   get "static_pages/top"
