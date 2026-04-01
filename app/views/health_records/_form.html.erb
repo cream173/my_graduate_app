@@ -1,52 +1,63 @@
-<%= form_with(model: health_record) do |form| %>
-  <% if health_record.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(health_record.errors.count, "error") %> prohibited this health_record from being saved:</h2>
-
-      <ul>
-        <% health_record.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_with(model: health_record, class: "max-w-md mx-auto p-6 bg-white space-y-8") do |f| %>
+  
+  <%# 1. 今日の気分 (Radio Buttons) %>
+  <section>
+    <label class="block text-center font-bold text-gray-700 mb-4">🌿 今日の気分</label>
+    <div class="flex justify-between gap-2">
+      <% [
+        { value: 1, label: 'リラックス', icon: '😌' },
+        { value: 2, label: '楽しい', icon: '☺️' },
+        { value: 3, label: 'ふつう', icon: '🙂' },
+        { value: 4, label: '落ち込み', icon: '😔' },
+        { value: 5, label: 'イライラ', icon: '😡' }
+      ].each do |mood| %>
+        <label class="flex-1 text-center cursor-pointer group">
+          <%= f.radio_button :feeling, mood[:value], class: "hidden peer" %>
+          <div class="p-2 border-2 border-gray-100 rounded-xl transition-all peer-checked:bg-green-50 peer-checked:border-green-600 grayscale peer-checked:grayscale-0">
+            <span class="text-2xl block"><%= mood[:icon] %></span>
+            <span class="text-xs text-gray-500 mt-1 block"><%= mood[:label] %></span>
+          </div>
+        </label>
+      <% end %>
     </div>
-  <% end %>
+  </section>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+  <%# 2. スライダー項目 (Stress, Fatigue, Sleep) %>
+  <div class="space-y-6">
+    <% [
+      { field: :stress_level, label: 'ストレス度', min: '低', max: '高' },
+      { field: :fatigue_level, label: '疲労度', min: '低', max: '高' },
+      { field: :sleep_level, label: '不眠度', min: '低', max: '高' }
+    ].each do |range| %>
+      <div class="space-y-2">
+        <div class="flex justify-between items-center">
+          <label class="font-bold text-gray-700"><%= range[:label] %></label>
+          <span class="text-green-700 font-bold text-sm" id="<%= range[:field] %>-val">3</span>
+        </div>
+        <%= f.range_field range[:field], min: 1, max: 5, step: 1, value: 3, 
+            class: "w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-700",
+            oninput: "document.getElementById('#{range[:field]}-val').innerText = this.value" %>
+        <div class="flex justify-between text-xs text-gray-400">
+          <span><%= range[:min] %></span>
+          <span><%= range[:max] %></span>
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <div>
-    <%= form.label :recorded_at, style: "display: block" %>
-    <%= form.date_field :recorded_at %>
-  </div>
+  <%# 3. 一言メモ %>
+  <section class="space-y-2">
+    <label class="font-bold text-gray-700">一言メモ</label>
+    <%= f.text_area :memo, placeholder: "今の気持ちや気づいたことを自由に書いてみてくださいね", 
+        class: "w-full rounded-2xl border-gray-200 bg-gray-50 p-4 focus:ring-green-500 focus:border-green-500 min-h-[100px]" %>
+  </section>
 
-  <div>
-    <%= form.label :feeling, style: "display: block" %>
-    <%= form.number_field :feeling %>
-  </div>
-
-  <div>
-    <%= form.label :fatigue_level, style: "display: block" %>
-    <%= form.number_field :fatigue_level %>
-  </div>
-
-  <div>
-    <%= form.label :stress_level, style: "display: block" %>
-    <%= form.number_field :stress_level %>
-  </div>
-
-  <div>
-    <%= form.label :sleep_level, style: "display: block" %>
-    <%= form.number_field :sleep_level %>
-  </div>
-
-  <div>
-    <%= form.label :memo, style: "display: block" %>
-    <%= form.textarea :memo %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <%# 4. ボタン類 %>
+  <div class="space-y-3 pt-4">
+    <%= f.submit "記録を保存する", 
+        class: "w-full py-4 bg-[#6B7D60] text-white font-bold rounded-xl shadow-lg hover:bg-[#5A6A51] transition-colors cursor-pointer" %>
+    
+    <%= link_to "キャンセル", root_path, 
+        class: "block w-full text-center py-2 text-gray-400 text-sm hover:text-gray-600" %>
   </div>
 <% end %>
