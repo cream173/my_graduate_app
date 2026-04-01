@@ -12,13 +12,13 @@
 
   <%# 今日の気分 %>
   <section>
-    <label class="block text-center font-bold text-gray-700 mb-4">🌿 今日の気分</label>
+    <label class="block text-center font-bold text-gray-700 mb-4">気分はいかがですか？</label>
     <div class="flex justify-between gap-2">
       <% [
-        { value: 1, label: 'リラックス', icon: '😌' },
-        { value: 2, label: '楽しい', icon: '☺️' },
+        { value: 1, label: 'おだやか', icon: '😌' },
+        { value: 2, label: 'たのしい', icon: '😆' },
         { value: 3, label: 'ふつう', icon: '🙂' },
-        { value: 4, label: '落ち込み', icon: '😔' },
+        { value: 4, label: 'しんどい', icon: '😞' },
         { value: 5, label: 'イライラ', icon: '😡' }
       ].each do |mood| %>
         <label class="flex-1 text-center cursor-pointer group">
@@ -32,7 +32,7 @@
     </div>
   </section>
 
-  <%# 2. スライダー項目 (Stress, Fatigue, Sleep) %>
+  <%# スライダー項目%>
   <div class="space-y-6">
     <% [
       { field: :stress_level, label: 'ストレス度', min: '低', max: '高' },
@@ -55,17 +55,17 @@
     <% end %>
   </div>
 
-  <%# 3. 一言メモ %>
+  <%# メモ %>
   <section class="space-y-2">
-    <label class="font-bold text-gray-700">一言メモ</label>
-    <%= f.text_area :memo, placeholder: "今の気持ちや気づいたことを自由に書いてみてくださいね", 
+    <label class="font-bold text-gray-700">メモ</label>
+    <%= f.text_area :memo, placeholder: "今の気持ちを自由に書いてみてくださいね", 
         class: "w-full rounded-2xl border-gray-200 bg-gray-50 p-4 focus:ring-green-500 focus:border-green-500 min-h-[100px]" %>
   </section>
 
   <%# 4. ボタン類 %>
   <div class="space-y-3 pt-4">
     <%= f.submit "記録を保存する", 
-        class: "w-full py-4 bg-[#6B7D60] text-white font-bold rounded-xl shadow-lg hover:bg-[#5A6A51] transition-colors cursor-pointer" %>
+        class: "w-full py-4 bg-[#6B7D60] text-white rounded-xl shadow-lg hover:bg-[#5A6A51] transition-colors cursor-pointer" %>
     
     <%= link_to "キャンセル", root_path, 
         class: "block w-full text-center py-2 text-gray-400 text-sm hover:text-gray-600" %>
