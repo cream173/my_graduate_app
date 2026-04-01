@@ -1,37 +1,48 @@
-<div id="<%= dom_id health_record %>">
-  <p>
-    <strong>User:</strong>
-    <%= health_record.user_id %>
-  </p>
+<%# 投稿を並べるエリア %>
+  <div class="max-w-md mx-auto bg-white rounded-[40px] p-8 shadow-sm border border-gray-60 relative overflow-hidden px-6 space-y-6">
 
-  <p>
-    <strong>Recorded at:</strong>
-    <%= health_record.recorded_at %>
-  </p>
+        <%# 日付と気分アイコン %>
+        <div class="flex justify-between items-start mb-6">
+          <div class="text-center">
+            <span class="text-3xl"><%= feeling_icon(health_record.feeling) %></span>
+            <p class="text-[10px] text-gray-400 mt-1"><%= feeling_label(health_record.feeling) %></p>
+          </div>
+        </div>
 
-  <p>
-    <strong>Feeling:</strong>
-    <%= health_record.feeling %>
-  </p>
+        <%# ゲージ表示 %>
+        <div class="space-y-4 mb-8">
+          <% [
+            { label: 'ストレス', val: health_record.stress_level, color: 'bg-[#B5B2A1]' },
+            { label: '疲労度', val: health_record.fatigue_level, color: 'bg-[#D1C7A7]' },
+            { label: '睡眠の質', val: health_record.sleep_level, color: 'bg-[#A67B7B]' }
+          ].each do |param| %>
+            <div class="space-y-1">
+              <div class="flex justify-between text-[11px] text-gray-500 font-medium px-1">
+                <span><%= param[:label] %></span>
+                <span><%= param[:val] * 20 %>%</span>
+              </div>
+              <div class="h-[3px] w-full bg-gray-100 rounded-full overflow-hidden">
+                <div class="<%= param[:color] %> h-full" style="width: <%= param[:val] * 20 %>%"></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
 
-  <p>
-    <strong>Fatigue level:</strong>
-    <%= health_record.fatigue_level %>
-  </p>
+        <%# 気になる不調（バッジ） %>
+        <div class="mb-8">
+          <p class="text-[11px] text-gray-400 mb-3">気になる不調</p>
+          <div class="flex flex-wrap gap-2">
+            <%# 中間テーブルを実装済みなら record.symptoms.each に書き換え %>
+            <span class="px-4 py-1.5 bg-[#F4F6F3] text-[#8C9B8A] text-xs rounded-full border border-gray-100">
+              特になし
+            </span>
+          </div>
+        </div>
 
-  <p>
-    <strong>Stress level:</strong>
-    <%= health_record.stress_level %>
-  </p>
-
-  <p>
-    <strong>Sleep level:</strong>
-    <%= health_record.sleep_level %>
-  </p>
-
-  <p>
-    <strong>Memo:</strong>
-    <%= health_record.memo %>
-  </p>
-
-</div>
+        <%# 一言メモ %>
+        <div class="pt-6 border-t border-gray-50">
+          <p class="text-sm text-[#8C8273] italic leading-relaxed font-light">
+            「<%= health_record.memo %>」
+          </p>
+        </div>
+      </div>

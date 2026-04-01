@@ -22,10 +22,11 @@ class HealthRecordsController < ApplicationController
   # POST /health_records or /health_records.json
   def create
     @health_record = HealthRecord.new(health_record_params)
+    @health_record.user = current_user
 
     respond_to do |format|
       if @health_record.save
-        format.html { redirect_to @health_record, notice: "Health record was successfully created." }
+        format.html { redirect_to health_records_path, notice: "体調を記録しました" }
         format.json { render :show, status: :created, location: @health_record }
       else
         format.html { render :new, status: :unprocessable_entity }
