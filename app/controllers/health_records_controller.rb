@@ -39,7 +39,7 @@ class HealthRecordsController < ApplicationController
   def update
     respond_to do |format|
       if @health_record.update(health_record_params)
-        format.html { redirect_to @health_record, notice: "Health record was successfully updated.", status: :see_other }
+        format.html { redirect_to health_records_path, notice: "体調記録を更新しました", status: :see_other }
         format.json { render :show, status: :ok, location: @health_record }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class HealthRecordsController < ApplicationController
     @health_record.destroy!
 
     respond_to do |format|
-      format.html { redirect_to health_records_path, notice: "Health record was successfully destroyed.", status: :see_other }
+      format.html { redirect_to health_records_path, notice: "体調記録を削除しました", status: :see_other }
       format.json { head :no_content }
     end
   end

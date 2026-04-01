@@ -1,18 +1,18 @@
-<%= form_with(model: health_record, class: "max-w-md mx-auto p-6 bg-white space-y-8") do |f| %>
+<%= form_with(model: health_record, class: "max-w-md mx-auto p-6 mb-20 bg-white rounded-[40px] p-8 shadow-sm border border-gray-60 relative overflow-hidden") do |f| %>
   <% if health_record.errors.any? %>
-  <div class="bg-red-50 text-red-500 p-4 rounded-xl mb-6">
-    <h2><%= health_record.errors.count %>件のエラーがあります:</h2>
-    <ul>
-      <% health_record.errors.full_messages.each do |error| %>
-        <li>・<%= error %></li>
-      <% end %>
-    </ul>
-  </div>
+    <div class="bg-red-50 text-red-500 p-4 rounded-xl mb-6">
+      <h2><%= health_record.errors.count %>件のエラーがあります:</h2>
+      <ul>
+        <% health_record.errors.full_messages.each do |error| %>
+          <li>・<%= error %></li>
+        <% end %>
+      </ul>
+    </div>
 <% end %>
 
   <%# 今日の気分 %>
-  <section>
-    <label class="block text-center font-bold text-gray-700 mb-4">気分はいかがですか？</label>
+  <section class="mb-12">
+    <label class="block text-center font-bold text-gray-700 mb-5">気分はいかがですか？</label>
     <div class="flex justify-between gap-2">
       <% [
         { value: 1, label: 'おだやか', icon: '😌' },
@@ -33,7 +33,7 @@
   </section>
 
   <%# スライダー項目%>
-  <div class="space-y-6">
+  <div class="mb-12">
     <% [
       { field: :stress_level, label: 'ストレス度', min: '低', max: '高' },
       { field: :fatigue_level, label: '疲労度', min: '低', max: '高' },
