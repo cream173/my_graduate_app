@@ -1,0 +1,52 @@
+<%= form_with(model: health_record) do |form| %>
+  <% if health_record.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(health_record.errors.count, "error") %> prohibited this health_record from being saved:</h2>
+
+      <ul>
+        <% health_record.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :recorded_at, style: "display: block" %>
+    <%= form.date_field :recorded_at %>
+  </div>
+
+  <div>
+    <%= form.label :feeling, style: "display: block" %>
+    <%= form.number_field :feeling %>
+  </div>
+
+  <div>
+    <%= form.label :fatigue_level, style: "display: block" %>
+    <%= form.number_field :fatigue_level %>
+  </div>
+
+  <div>
+    <%= form.label :stress_level, style: "display: block" %>
+    <%= form.number_field :stress_level %>
+  </div>
+
+  <div>
+    <%= form.label :sleep_level, style: "display: block" %>
+    <%= form.number_field :sleep_level %>
+  </div>
+
+  <div>
+    <%= form.label :memo, style: "display: block" %>
+    <%= form.textarea :memo %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
