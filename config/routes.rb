@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
-  resources :health_records
-  get "dashboards/index"
-  devise_for :users
+
   get "static_pages/top"
+  get "dashboards/index"
+
+  devise_for :users
+
+  authenticated :user do
+    root to: 'dashboards#index', as: :authenticated_root
+  end
+
+    resources :health_records
+    resource :mypage, only: %i[show edit]
+
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -15,10 +25,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-
-  authenticated :user do
-    root to: 'dashboards#index', as: :authenticated_root
-  end
-
   root "static_pages#top"
 end
