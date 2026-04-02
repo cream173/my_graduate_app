@@ -1,12 +1,15 @@
-  <div class="mb-8 text-center">
-    <h1 class="text-gray-700">
-      今日も一日お疲れさま
-    </h1>
+<div class="flex flex-col items-center justify-center gap-4 py-10">
+      <h1 class="text-3xl text-gray-700">
+        今日も一日お疲れさま🌱
+      </h1>
 
-    <span class="font-semibold">
+  <div class="flex items-baseline">
+    <span class="text-3xl font-semibold">
       <%= current_user.name %>
     </span>
-      さん
+      さん😊
+  </div>
+
     <p class="text-sm text-gray-500 mt-1">
       今週の体調
     </p>
@@ -15,5 +18,5 @@
       メッセージ
     </p>
 
-    <%= link_to "体調を記録する", new_health_record_path, class: "px-7 py-3 text-sm bg-pink-300 text-white rounded-xl hover:bg-pink-400 shadow-sm transition" %>
-  </div>
+    <%= link_to "体調を記録する", new_health_record_path, class: "px-7 py-3 text-sm bg-red-300 text-white rounded-xl hover:bg-red-400 shadow-sm transition" %>
+</div>
