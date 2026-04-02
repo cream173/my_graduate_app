@@ -66,6 +66,6 @@ class HealthRecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def health_record_params
-      params.expect(health_record: [ :user_id, :recorded_at, :feeling, :fatigue_level, :stress_level, :sleep_level, :memo ])
+      params.expect(health_record: [ :user_id, :recorded_at, :feeling, :fatigue_level, :stress_level, :sleep_level, :memo, symptom_ids: [] ])
     end
 end
