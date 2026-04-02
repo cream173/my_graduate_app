@@ -59,10 +59,17 @@
         <div class="mb-8">
           <p class="text-[11px] text-gray-400 mb-3">気になる不調</p>
           <div class="flex flex-wrap gap-2">
-            <%# 中間テーブルを実装済みなら record.symptoms.each に書き換え %>
-            <span class="px-4 py-1.5 bg-[#F4F6F3] text-[#8C9B8A] text-xs rounded-full border border-gray-100">
-              特になし
-            </span>
+            <% if health_record.symptoms.any? %>
+              <% health_record.symptoms.each do |symptom| %>
+                <span class="px-4 py-1.5 bg-[#F4F6F3] text-[#8C9B8A] text-xs rounded-full border border-gray-100">
+                  <%= symptom.name %>
+                </span>
+              <% end %>
+            <% else %>
+              <span class="px-4 py-1.5 bg-white text-[#8C9B8A] text-xs rounded-full border border-gray-100">
+                特になし
+              </span>
+            <% end %>
           </div>
         </div>
 
