@@ -21,6 +21,9 @@
       <div class="pt-6">
         <%= f.submit "更新する", class: "w-full py-4 bg-red-300 text-white rounded-xl font-bold cursor-pointer" %>
       </div>
+
+      <%= link_to "キャンセル", mypage_path, 
+        class: "block w-full text-center py-2 text-gray-400 text-sm hover:text-gray-600" %>
     <% end %>
   </div>
 </div>
