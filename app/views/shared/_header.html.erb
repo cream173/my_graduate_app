@@ -16,10 +16,10 @@
       <% else %>
         <%# --- ログイン前のみ表示 --- %>
         <%= link_to "ログイン", new_user_session_path,
-            class: "px-2 py-2 text-sm text-white hover:text-green-200 transition" %>
+            class: "px-1 py-2 text-sm text-white hover:text-red-200 transition" %>
 
         <%= link_to "新規登録", new_user_registration_path,
-            class: "px-5 py-2 text-sm bg-green-300 text-white rounded-xl hover:bg-green-500 shadow-sm transition" %>
+            class: "px-1 py-2 text-sm text-white hover:text-red-200 transition" %>
       <% end %>
     </div>
   </div>
