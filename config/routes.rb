@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
     resources :health_records
-    resource :mypage, only: %i[show edit]
+    resource :mypage, only: %i[show edit update]
 
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
