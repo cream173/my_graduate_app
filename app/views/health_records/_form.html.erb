@@ -1,14 +1,5 @@
 <%= form_with(model: health_record, class: "max-w-md mx-auto p-6 mb-20 bg-white rounded-[40px] p-8 shadow-sm border border-gray-60 relative overflow-hidden") do |f| %>
-  <% if health_record.errors.any? %>
-    <div class="bg-red-50 text-red-500 p-4 rounded-xl mb-6">
-      <h2><%= health_record.errors.count %>件のエラーがあります:</h2>
-      <ul>
-        <% health_record.errors.full_messages.each do |error| %>
-          <li>・<%= error %></li>
-        <% end %>
-      </ul>
-    </div>
-<% end %>
+  <%= render 'shared/error_message', object: f.object %>
 
   <%# 今日の気分 %>
   <section class="mb-12">
