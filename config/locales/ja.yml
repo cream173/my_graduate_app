@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      health_record: "体調記録"
+    attributes:
+      user:
+        name: "なまえ"
+        email: "メールアドレス"
+        password: "パスワード"
+      health_record:
+        feeling: "気分"
+        fatigue_level: "疲労度"
+        stress_level: "ストレス度"
+        sleep_level: "不眠度"
+        memo: "メモ"
+        
+  errors:
+    messages:
+      blank: "を入力してください"
+      not_saved:
+        one: "1件のエラーにより保存できませんでした"
+        other: "%{count}件のエラーにより保存できませんでした"
