@@ -1,8 +1,8 @@
-<% if @health_record.errors.any? %>
-  <div id="error_explanation">
-    <ul>
-      <% @health_record.errors.each do |error| %>
-        <li><%= error.full_message %></li>
+<% if object.errors.any? %>
+  <div class="bg-[#fff5f5] text-stone-500 border border-[#f5e1e1] max-w-xl mx-auto mb-8 p-5 rounded-lg shadow-sm page-fade">
+    <ul class="list-disc list-inside space-y-2 text-sm">
+      <% object.errors.full_messages.each do |message| %>
+        <li class="font-medium"><%= message %></li>
       <% end %>
     </ul>
   </div>

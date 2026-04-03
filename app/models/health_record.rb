@@ -4,4 +4,7 @@ class HealthRecord < ApplicationRecord
   has_many :symptoms, through: :health_record_symptoms
 
   validates :feeling, presence: true
+  validates :fatigue_level, presence: true
+  validates :stress_level, presence: true
+  validates :sleep_level, presence: true
 end

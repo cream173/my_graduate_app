@@ -5,4 +5,5 @@
   <h1 class="text-center text-3xl text-[#8C8273] font-serif pt-5">今日の体調記録</h1>
   <p class="text-center text-[10px] text-[#A8A297] tracking-widest uppercase font-light pb-10">The Journey of Balance</p>
 
+<%= render 'shared/error_message', object: @health_record %>
 <%= render "form", health_record: @health_record %>

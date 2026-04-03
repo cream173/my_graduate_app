@@ -3,7 +3,7 @@
   <p class="text-center pb-10 text-[10px] text-[#A8A297] tracking-widest uppercase font-light">Create Account</p>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render 'shared/error_message', object: resource %>
 
   <div class="field">
     <p><%= f.label :name, "なまえ" %></p>
