@@ -25,8 +25,8 @@
 
   <body class="flex flex-col min-h-screen text-stone-500 bg-[#fff9ef] font-serif">
     <%= render 'shared/header' %>
+    <main class="flex-grow pt-16">
     <%= render 'shared/flash_message' %>
-    <main class="flex-grow">
     <%= yield %>
     </main>
     <%= render 'shared/footer' %>
