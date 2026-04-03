@@ -13,6 +13,8 @@ module MyGraduateApp
 
     config.i18n.default_locale = :ja
 
+    config.action_view.field_with_errors_proc = Proc.new { |html_tag, instance| html_tag.html_safe }
+
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
