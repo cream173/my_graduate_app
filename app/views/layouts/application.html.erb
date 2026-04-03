@@ -25,13 +25,10 @@
 
   <body class="flex flex-col min-h-screen bg-[#fff9ef] font-serif">
     <%= render 'shared/header' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render 'shared/flash_message' %>
     <main class="flex-grow">
     <%= yield %>
     </main>
-
     <%= render 'shared/footer' %>
-    
   </body>
 </html>
