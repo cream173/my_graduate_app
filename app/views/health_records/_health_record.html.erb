@@ -30,7 +30,7 @@
     </p>
 </div>
 
-  <%# 右側：気分アイコン（今のコード） %>
+      <%# 気分アイコン%>
         <div class="text-center">
           <span class="text-3xl"><%= feeling_icon(health_record.feeling) %></span>
           <p class="text-[10px] text-gray-400 mt-1"><%= feeling_label(health_record.feeling) %></p>
@@ -44,18 +44,28 @@
             { label: 'からだの疲れ', val: health_record.fatigue_level, color: 'bg-[#D1C7A7]' },
             # { label: '寝不足度', val: health_record.sleep_level, color: 'bg-[#A67B7B]' }
           ].each do |param| %>
+
+          <% percentage = param[:val] * 20
+             color_class = if percentage > 80
+                            "bg-red-400"
+                           elsif percentage > 60
+                            "bg-yellow-400"
+                           else
+                            "bg-emerald-400"
+                           end%>
+
             <div class="space-y-1">
               <div class="flex justify-between text-[11px] font-medium px-1">
                 <span><%= param[:label] %></span>
               </div>
               <div class="h-[4px] w-full bg-stone-100 rounded-full overflow-hidden">
-                <div class="<%= param[:color] %> h-full" style="width: <%= param[:val] * 20 %>%"></div>
+                <div class="<%= color_class %> h-full" style="width: <%= percentage %>%"></div>
               </div>
             </div>
           <% end %>
         </div>
 
-        <%# 気になる不調（バッジ） %>
+        <%# 気になる不調 %>
         <div class="mb-8">
           <p class="text-[11px] mb-3">気になる不調</p>
           <div class="flex flex-wrap gap-2">
@@ -73,7 +83,7 @@
           </div>
         </div>
 
-        <%# 一言メモ %>
+        <%# メモ %>
         <div class="pt-6 border-t border-stone-50">
           <p class="text-sm leading-relaxed font-light">
             <%= health_record.memo %>

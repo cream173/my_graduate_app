@@ -23,9 +23,9 @@
   <%# スライダー項目%>
   <div class="mb-12">
     <% [
-      { field: :stress_level, label: 'こころの負担度', min: '低', max: '高' },
-      { field: :fatigue_level, label: 'からだの疲れ度', min: '低', max: '高' },
-      { field: :sleep_level, label: '寝不足度', min: '低', max: '高' }
+      { field: :stress_level, label: 'こころの負担', min: '低', max: '高' },
+      { field: :fatigue_level, label: 'からだの疲れ', min: '低', max: '高' },
+      # { field: :sleep_level, label: '寝不足度', min: '低', max: '高' }
     ].each do |range| %>
       <div class="space-y-2">
         <div class="flex justify-between items-center">
@@ -53,7 +53,7 @@
         
         <%# ボタン部分 %>
         <span class="inline-block px-3 py-1 rounded-full border border-stone-200 bg-stone-50 text-sm 
-                     peer-checked:bg-red-200 peer-checked:text-white peer-checked:border-red-200 
+                     peer-checked:bg-[#d17770] peer-checked:text-white 
                      transition-all duration-200 hover:bg-stone-200">
           <%= b.text %>
         </span>
