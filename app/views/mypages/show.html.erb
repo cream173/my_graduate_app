@@ -1,16 +1,15 @@
 <% content_for :page_title, "マイページ" %>
 
 <div class="max-w-md mx-auto py-10 px-6">
+  <div class="bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 mb-8">
   <h1 class="text-center text-3xl">マイページ</h1>
   <p class="text-center pb-10 text-[10px] text-stone-400 tracking-widest uppercase font-light">My page</p>
-
-  <div class="bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 mb-8">
     <div class="space-y-6">
       
       <%# 名前の表示 %>
       <div>
-        <label class="block text-sm font-bold mb-1">なまえ</label>
-        <p class="text-lg font-medium border-b border-stone-100 pb-2">
+        <label class="block text-sm mb-1">なまえ</label>
+        <p class="text-lg border-b border-stone-100 pb-2">
           <%= @user.name %>
         </p>
       </div>
@@ -18,16 +17,8 @@
       <%# メールアドレスの表示 %>
       <div>
         <label class="block text-sm mb-1">メールアドレス</label>
-        <p class="text-lg font-medium border-b border-stone-100 pb-2">
+        <p class="text-lg border-b border-stone-100 pb-2">
           <%= @user.email %>
-        </p>
-      </div>
-
-      <%# 登録日の表示（おまけ） %>
-      <div>
-        <label class="block text-sm mb-1">利用開始日</label>
-        <p class="text-sm text-gray-600">
-          <%= @user.created_at.strftime('%Y年%m月%d日') %>
         </p>
       </div>
 

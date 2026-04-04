@@ -1,7 +1,11 @@
 <%= form_with(model: health_record, local: true, data: { turbo: false }, class: "max-w-md mx-auto p-6 mb-20 bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 relative overflow-hidden") do |f| %>
+  
+  <h1 class="text-center text-3xl font-serif pt-2">体調記録</h1>
+  <p class="text-center text-[10px] text-stone-400 tracking-widest uppercase font-light pb-14">The Journey of Balance</p>
+  
   <%# 今日の気分 %>
   <section class="mb-12">
-    <label class="block text-center font-bold mb-5">気分はいかがですか？</label>
+    <label class="block text-center font-bold mb-2">気分はいかがですか？</label>
     <div class="flex justify-between gap-2">
       <% [
         { value: 1, label: 'ごきげん', icon: '😊' },
