@@ -40,15 +40,15 @@
         <%# ゲージ表示 %>
         <div class="space-y-4 mb-8">
           <% [
-            { label: 'ストレス', val: health_record.stress_level, color: 'bg-[#B5B2A1]' },
-            { label: '疲労度', val: health_record.fatigue_level, color: 'bg-[#D1C7A7]' },
-            { label: '睡眠の質', val: health_record.sleep_level, color: 'bg-[#A67B7B]' }
+            { label: 'こころの負担', val: health_record.stress_level, color: 'bg-[#B5B2A1]' },
+            { label: 'からだの疲れ', val: health_record.fatigue_level, color: 'bg-[#D1C7A7]' },
+            # { label: '寝不足度', val: health_record.sleep_level, color: 'bg-[#A67B7B]' }
           ].each do |param| %>
             <div class="space-y-1">
               <div class="flex justify-between text-[11px] font-medium px-1">
                 <span><%= param[:label] %></span>
               </div>
-              <div class="h-[3px] w-full bg-stone-100 rounded-full overflow-hidden">
+              <div class="h-[4px] w-full bg-stone-100 rounded-full overflow-hidden">
                 <div class="<%= param[:color] %> h-full" style="width: <%= param[:val] * 20 %>%"></div>
               </div>
             </div>

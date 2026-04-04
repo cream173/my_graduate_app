@@ -1,7 +1,7 @@
-<header class="fixed top-0 left-0 w-full bg-[#d17770]/90 backdrop-blur-md shadow-lg z-50">
+<header class="fixed top-0 left-0 w-full bg-[#ff9ef]/50 backdrop-blur-sm shadow-md z-50">
   <div class="max-w-8xl mx-auto px-4 py-2 flex items-center justify-between">
     
-    <%= link_to root_path, class: "text-xl font-light text-white" do %>
+    <%= link_to root_path, class: "text-xl font-light" do %>
       からだびより
     <% end %>
 
@@ -9,17 +9,14 @@
       <% if user_signed_in? %>
         <%# --- ログイン後のみ表示 --- %>
         <%= link_to "マイページ", mypage_path, 
-            class: "px-1 py-2 text-sm text-white hover:underline transition" %>
+            class: "px-1 py-2 text-sm hover:underline transition" %>
             
         <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete },
-            class: "px-1 py-2 text-sm text-white hover:underline transition" %>
+            class: "px-1 py-2 text-sm hover:underline transition" %>
       <% else %>
         <%# --- ログイン前のみ表示 --- %>
-        <%= link_to "ログイン", new_user_session_path,
-            class: "px-1 py-2 text-sm text-white hover:underline transition" %>
-
-        <%= link_to "新規登録", new_user_registration_path,
-            class: "px-1 py-2 text-sm text-white hover:underline transition" %>
+  <%= link_to "新規登録", new_user_registration_path, class: "px-4 py-2 bg-[#d17770] text-white text-sm hover:bg-[#cc6a63] rounded-lg transition" %>
+  <%= link_to "ログイン", new_user_session_path, class: "px-4 py-2 bg-[#ff9ef]/50 text-sm border border-stone-200 hover:bg-stone-100 rounded-lg transition" %>
       <% end %>
     </div>
   </div>
