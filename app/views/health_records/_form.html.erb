@@ -1,6 +1,6 @@
-<%= form_with(model: health_record, local: true, data: { turbo: false }, class: "max-w-md mx-auto p-6 mb-20 bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 relative overflow-hidden") do |f| %>
+<%= form_with(model: health_record, local: true, data: { turbo: false }, class: "max-w-md mx-auto my-10 bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 relative overflow-hidden") do |f| %>
   
-  <h1 class="text-center text-3xl font-serif pt-2">体調記録</h1>
+  <h1 class="text-center text-3xl font-serif py-2">体調記録</h1>
   <p class="text-center text-[10px] text-stone-400 tracking-widest uppercase font-light pb-14">The Journey of Balance</p>
   
   <%# 今日の気分 %>
@@ -11,7 +11,7 @@
         { value: 1, label: 'ごきげん', icon: '😊' },
         { value: 2, label: 'ふつう', icon: '🙂' },
         { value: 3, label: '不安', icon: '😔' },
-        { value: 4, label: 'しんどい', icon: '😭' },
+        { value: 4, label: 'しんどい', icon: '😢' },
         { value: 5, label: 'イライラ', icon: '😡' }
       ].each do |feeling| %>
         <label class="flex-1 text-center cursor-pointer group rounded-xl border-2 border-stone-100 p-2 transition-all
