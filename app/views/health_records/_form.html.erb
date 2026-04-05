@@ -1,11 +1,11 @@
 <%= form_with(model: health_record, local: true, data: { turbo: false }, class: "max-w-md mx-auto my-10 bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 relative overflow-hidden") do |f| %>
   
-  <h1 class="text-center text-3xl font-serif py-2">体調記録</h1>
-  <p class="text-center text-[10px] text-stone-400 tracking-widest uppercase font-light pb-14">The Journey of Balance</p>
+  <h1 class="text-center text-3xl font-serif">体調記録</h1>
+  <p class="text-center text-[10px] text-stone-400 tracking-widest uppercase font-light pb-12">The Journey of Balance</p>
   
   <%# 今日の気分 %>
-  <section class="mb-12">
-    <label class="block text-center font-bold mb-2">気分はいかがですか？</label>
+  <section class="mb-10">
+    <label class="block text-center font-bold mb-4">気分はいかがですか？</label>
     <div class="flex justify-between gap-2">
       <% [
         { value: 1, label: 'ごきげん', icon: '😊' },
@@ -25,21 +25,34 @@
   </section>
 
   <%# スライダー項目%>
-  <div class="mb-12">
+<div class="mb-10">
     <% [
-      { field: :stress_level, label: 'こころの負担', min: '低', max: '高' },
+      { field: :stress_level, label: 'ストレス', min: '低', max: '高' },
       { field: :fatigue_level, label: 'からだの疲れ', min: '低', max: '高' },
-      { field: :sleep_level, label: 'ねむりのバランス', min: 'ぐっすり', max: 'うとうと' }
+      { field: :sleep_level, label: 'ねむりの質', min: 'ぐっすり', max: 'うとうと' }
     ].each do |range| %>
-      <div class="space-y-2">
+      <div class="space-y-1">
         <div class="flex justify-between items-center">
           <label class="font-bold"><%= range[:label] %></label>
-          <span class="font-bold text-sm" id="<%= range[:field] %>-val">3</span>
+          <span class="hidden" id="<%= range[:field] %>-val">0</span>
         </div>
-        <%= f.range_field range[:field], min: 0, max: 5, step: 1, value: 3, 
-            class: "w-full h-2 bg-stone-100 rounded-lg appearance-none cursor-pointer accent-stone-400",
-            oninput: "document.getElementById('#{range[:field]}-val').innerText = this.value" %>
-        <div class="flex justify-between text-xs text-stone-200">
+
+        <%# DBに保存される値の隠しスペース%>
+        <%= f.hidden_field range[:field], value: 0, id: "#{range[:field]}-hidden" %>
+
+        <%# スライダーの見た目 %>
+        <%= range_field_tag "#{range[:field]}_display", 0, min: 0, max: 100,
+            class: "w-full h-2 rounded-lg appearance-none cursor-pointer accent-stone-400",
+            style: "background: linear-gradient(to right, #a8a29e 0%, #e7e5e4 0%);",
+            oninput: "
+              const val100 = this.value;
+              const val5 = Math.round(val100 / 20);
+              this.style.background = `linear-gradient(to right, #a8a29e ${val100}%, #e7e5e4 ${val100}%)`;
+              document.getElementById('#{range[:field]}-val').innerText = val5;
+              document.getElementById('#{range[:field]}-hidden').value = val5;
+            " %>
+
+        <div class="flex justify-between text-[10px] text-stone-400">
           <span><%= range[:min] %></span>
           <span><%= range[:max] %></span>
         </div>
