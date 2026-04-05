@@ -40,9 +40,9 @@
         <%# ゲージ表示 %>
         <div class="space-y-4 mb-8">
           <% [
-            { label: 'こころの負担', val: health_record.stress_level || 0, color: 'bg-[#B5B2A1]' },
-            { label: 'からだの疲れ', val: health_record.fatigue_level || 0, color: 'bg-[#D1C7A7]' },
-            { label: 'ねむりのバランス', val: health_record.sleep_level || 0, color: 'bg-[#A67B7B]' }
+            { label: "ストレス", val: health_record.stress_level || 0, color: 'bg-[#B5B2A1]' },
+            { label: "からだの疲れ", val: health_record.fatigue_level || 0, color: 'bg-[#D1C7A7]' },
+            { label: 'ねむりの質', val: health_record.sleep_level || 0, color: 'bg-[#A67B7B]' }
           ].each do |param| %>
 
           <% percentage = param[:val] * 20

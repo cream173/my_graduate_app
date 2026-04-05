@@ -16,15 +16,15 @@
 
     <div class="flex justify-between gap-4">
       <% [
-        { label: 'こころの負担', val: @stress_percent || 0 },
-        { label: 'からだの疲れ', val: @fatigue_percent || 0 },
-        { label: 'ねむりのバランス', val: @sleep_percent || 0 }
+        { label: "ストレス", val: @stress_percent || 0 },
+        { label: "からだの疲れ", val: @fatigue_percent || 0 },
+        { label: 'ねむりの質', val: @sleep_percent || 0 }
       ].each do |item| %>
 
         <%
-          graph_color = if item[:val] >= 80
+          graph_color = if item[:val] >= 70
                           "#c4232e" # 赤
-                        elsif item[:val] >= 60
+                        elsif item[:val] >= 50
                           "#eab308" # 黄
                         else
                           "#a6bf6d" # 緑
@@ -39,7 +39,7 @@
             <div class="w-[calc(100%-8px)] h-[calc(100%-8px)] bg-white rounded-full flex items-center justify-center">
               <div class="text-center">
                 <span class="text-sm font-bold">
-                <% if item[:label] == "ねむりのバランス" %>
+                <% if item[:label] == "ねむりの質" %>
                     <% if item[:val] >= 80 %>
                       うとうと
                     <% elsif item[:val] <= 50 %>
