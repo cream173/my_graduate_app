@@ -3,7 +3,7 @@ class HealthRecordsController < ApplicationController
 
   # GET /health_records or /health_records.json
   def index
-    @health_records = HealthRecord.all.includes(:symptoms).order(created_at: :desc)
+    @health_records = current_user.health_records.includes(:symptoms).order(created_at: :desc)
   end
 
   # GET /health_records/1 or /health_records/1.json

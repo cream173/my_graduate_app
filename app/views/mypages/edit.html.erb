@@ -1,9 +1,10 @@
 <% content_for :page_title, "マイページ編集" %>
 
-<div class="max-w-md mx-auto py-10 px-6">
-  <div class="bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 mb-8">
+
+<div class="max-w-md mx-auto py-20 px-6">
+  <div class="bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 mb-10">
   <h1 class="text-center text-3xl">マイページ編集</h1>
-  <p class="text-center pb-10 text-[10px] text-stone-400 tracking-widest uppercase font-light">Edit My page</p>
+  <p class="text-center pb-6 text-[10px] text-stone-400 tracking-widest uppercase font-light">Edit My page</p>
     <div class="space-y-6">
   <%= form_with(model: @user, url: mypage_path, method: :patch, local: true, class: "space-y-6") do |f| %>
 

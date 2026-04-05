@@ -1,7 +1,4 @@
-<% content_for :title, "今日の体調記録" %>
-<div class="text-[#8C8273] font-serif">
-  <%= link_to "<", root_path %>
-</div>
+<% content_for :title, "体調記録" %>
 
 <%= render 'shared/error_message', object: @health_record %>
 <%= render "form", health_record: @health_record %>
