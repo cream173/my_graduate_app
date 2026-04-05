@@ -1,4 +1,4 @@
-<footer class="w-full border-b bg-[#d17770] min-h-[70px] flex items-center justify-center">
+<footer class="<%= user_signed_in? ? "fixed bottom-0" : "" %> w-full bg-[#ff9ef]/80 border border-stone-100 backdrop-blur-sm shadow-md min-h-[70px] flex items-center justify-center">
   <div class="mx-auto w-full max-w-screen-md">
     <% if user_signed_in? %>
       <%# ログイン後のみ表示 %>
@@ -30,7 +30,7 @@
     <% else %>
       <%# ログイン前のみ表示 %>
       <div class="flex items-center justify-center">
-        <p class="text-white/50 text-xs">&copy; 2026 からだびより</p>
+        <p class="text-xs">&copy; 2026 からだびより</p>
       </div>
     <% end %>
   </div>

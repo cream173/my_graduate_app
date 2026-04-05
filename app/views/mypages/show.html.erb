@@ -1,33 +1,24 @@
 <% content_for :page_title, "マイページ" %>
 
 <div class="max-w-md mx-auto py-10 px-6">
-  <h1 class="text-center text-3xl text-[#8C8273] font-serif">マイページ</h1>
-  <p class="text-center pb-10 text-[10px] text-[#A8A297] tracking-widest uppercase font-light">My page</p>
-
-  <div class="bg-white rounded-[40px] p-8 shadow-sm border border-gray-100 mb-8">
+  <div class="bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 my-10">
+  <h1 class="text-center text-3xl">マイページ</h1>
+  <p class="text-center pb-10 text-[10px] text-stone-400 tracking-widest uppercase font-light">My page</p>
     <div class="space-y-6">
       
       <%# 名前の表示 %>
       <div>
-        <label class="block text-sm text-gray-400 mb-1">なまえ</label>
-        <p class="text-lg font-medium text-gray-800 border-b border-gray-100 pb-2">
+        <label class="block text-sm mb-1">なまえ</label>
+        <p class="text-lg border-b border-stone-100 pb-2">
           <%= @user.name %>
         </p>
       </div>
 
       <%# メールアドレスの表示 %>
       <div>
-        <label class="block text-sm text-gray-400 mb-1">メールアドレス</label>
-        <p class="text-lg font-medium text-gray-800 border-b border-gray-100 pb-2">
+        <label class="block text-sm mb-1">メールアドレス</label>
+        <p class="text-lg border-b border-stone-100 pb-2">
           <%= @user.email %>
-        </p>
-      </div>
-
-      <%# 登録日の表示（おまけ） %>
-      <div>
-        <label class="block text-sm text-gray-400 mb-1">利用開始日</label>
-        <p class="text-sm text-gray-600">
-          <%= @user.created_at.strftime('%Y年%m月%d日') %>
         </p>
       </div>
 
@@ -37,6 +28,6 @@
   <%# 編集画面へのボタン %>
   <div class="space-y-3">
     <%= link_to "登録情報を変更する", edit_mypage_path, 
-        class: "block w-full py-4 bg-red-100 text-red-500 rounded-2xl text-center font-bold hover:bg-red-200 transition" %>
+        class: "block w-full py-4 bg-[#d17770] text-white rounded-2xl text-center hover:bg-[#cc6a63] transition" %>
   </div>
 </div>
