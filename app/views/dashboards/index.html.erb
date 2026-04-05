@@ -1,76 +1,70 @@
-<div class="flex flex-col items-center justify-center gap-4 py-10 min-h-screen bg-[#fcfaf7] pb-24">
+<div class="flex flex-col items-center justify-center gap-4 py-10 min-h-screen bg-[#fcfaf7] py-20">
   <h1 class="text-3xl font-serif">
     今日も一日お疲れさま🌱
   </h1>
 
   <div class="flex items-baseline mb-6">
-    <span class="text-3xl font-semibold mr-1">
-      <%= current_user.name %>
+    <span class="text-2xl">
+      <%= current_user.name %>さん
     </span>
-    <span class="text-stone-600">さん</span>
   </div>
 
   <div class="w-full max-w-md px-6 mb-8">
     <div class="flex justify-between items-end mb-6">
-      <h2 class="text-xl font-serif">今週の平均</h2>
+      <h2 class="text-xl font-serif">今週の体調バランス</h2>
     </div>
 
     <div class="flex justify-between gap-4">
       <% [
-        { label: 'こころの負担', val: @stress_percent },
-        { label: 'からだの疲れ', val: @fatigue_percent }
+        { label: 'こころの負担', val: @stress_percent || 0 },
+        { label: 'からだの疲れ', val: @fatigue_percent || 0 },
+        { label: 'ねむりのバランス', val: @sleep_percent || 0 }
       ].each do |item| %>
 
         <%
           graph_color = if item[:val] >= 80
-                          "#ef4444" # 赤
+                          "#c4232e" # 赤
                         elsif item[:val] >= 60
                           "#eab308" # 黄
                         else
-                          "#5a6358" # 緑
+                          "#a6bf6d" # 緑
                         end
         %>
 
-        <div class="flex-1 flex flex-col items-center">
+      <div class="flex-1 flex flex-col items-center">
+        <span class="text-[10px] pb-3"><%= item[:label] %></span>
           <div class="w-28 h-28 rounded-full flex items-center justify-center mb-2 relative"
                style="background: conic-gradient(<%= graph_color %> <%= item[:val] %>%, #f1f0ee 0);">
             
-            <%# 内側の白い円 %>
             <div class="w-[calc(100%-8px)] h-[calc(100%-8px)] bg-white rounded-full flex items-center justify-center">
               <div class="text-center">
-                <span class="text-xl font-bold text-stone-700"><%= item[:val] %>%</span>
+                <span class="text-sm font-bold">
+                <% if item[:label] == "ねむりのバランス" %>
+                    <% if item[:val] >= 80 %>
+                      うとうと
+                    <% elsif item[:val] <= 50 %>
+                      ぐっすり
+                    <% else %>
+                      まあまあ
+                    <% end %>
+                <% else %>
+                  <% if item[:val] >= 80 %>
+                    高め
+                  <% elsif item[:val] >= 60 %>
+                    まあまあ
+                  <% else %>
+                    低め
+                  <% end %>
+                <% end %>
+              </span>
               </div>
             </div>
           </div>
-          <span class="text-[10px] text-stone-400 font-medium"><%= item[:label] %></span>
         </div>
       <% end %>
     </div>
   </div>
 
-  <div class="w-full max-w-md px-6 grid grid-cols-2 gap-4 mb-8">
-    <div class="bg-stone-100/50 rounded-[32px] p-6 border border-stone-100">
-      <div class="mb-4 text-stone-600">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      </div>
-      <h4 class="font-bold text-sm mb-1">心の波</h4>
-      <p class="text-[10px] text-stone-400 leading-tight">穏やかな上昇傾向です</p>
-    </div>
-
-    <div class="bg-stone-100/50 rounded-[32px] p-6 border border-stone-100">
-      <div class="mb-4 text-stone-600">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-        </svg>
-      </div>
-      <h4 class="font-bold text-sm mb-1">睡眠の質</h4>
-      <p class="text-[10px] text-stone-400 leading-tight">深い眠りが減少しています</p>
-    </div>
-  </div>
-
-  <%# 3. 今日のアドバイス %>
   <div class="w-full max-w-md px-6 mb-12">
     <div class="bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 text-center">
       <div class="flex justify-center mb-4">

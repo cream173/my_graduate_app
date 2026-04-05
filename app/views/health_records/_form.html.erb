@@ -29,14 +29,14 @@
     <% [
       { field: :stress_level, label: 'こころの負担', min: '低', max: '高' },
       { field: :fatigue_level, label: 'からだの疲れ', min: '低', max: '高' },
-      # { field: :sleep_level, label: '寝不足度', min: '低', max: '高' }
+      { field: :sleep_level, label: 'ねむりのバランス', min: 'ぐっすり', max: 'うとうと' }
     ].each do |range| %>
       <div class="space-y-2">
         <div class="flex justify-between items-center">
           <label class="font-bold"><%= range[:label] %></label>
           <span class="font-bold text-sm" id="<%= range[:field] %>-val">3</span>
         </div>
-        <%= f.range_field range[:field], min: 1, max: 5, step: 1, value: 3, 
+        <%= f.range_field range[:field], min: 0, max: 5, step: 1, value: 3, 
             class: "w-full h-2 bg-stone-100 rounded-lg appearance-none cursor-pointer accent-stone-400",
             oninput: "document.getElementById('#{range[:field]}-val').innerText = this.value" %>
         <div class="flex justify-between text-xs text-stone-200">

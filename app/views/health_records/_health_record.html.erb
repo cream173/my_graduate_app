@@ -40,18 +40,18 @@
         <%# ゲージ表示 %>
         <div class="space-y-4 mb-8">
           <% [
-            { label: 'こころの負担', val: health_record.stress_level, color: 'bg-[#B5B2A1]' },
-            { label: 'からだの疲れ', val: health_record.fatigue_level, color: 'bg-[#D1C7A7]' },
-            # { label: '寝不足度', val: health_record.sleep_level, color: 'bg-[#A67B7B]' }
+            { label: 'こころの負担', val: health_record.stress_level || 0, color: 'bg-[#B5B2A1]' },
+            { label: 'からだの疲れ', val: health_record.fatigue_level || 0, color: 'bg-[#D1C7A7]' },
+            { label: 'ねむりのバランス', val: health_record.sleep_level || 0, color: 'bg-[#A67B7B]' }
           ].each do |param| %>
 
           <% percentage = param[:val] * 20
-             color_class = if percentage > 80
-                            "bg-red-400"
-                           elsif percentage > 60
-                            "bg-yellow-400"
+             color_class = if percentage >= 80
+                            "bg-[#c4232e]"
+                           elsif percentage >= 60
+                            "bg-[#eab308]"
                            else
-                            "bg-emerald-400"
+                            "bg-[#a6bf6d]"
                            end%>
 
             <div class="space-y-1">
