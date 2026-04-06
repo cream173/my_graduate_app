@@ -3,9 +3,12 @@
 <div class="min-h-screen pt-20">
   <h1 class="text-center text-3xl text-[#8C8273] font-serif">記録一覧</h1>
   <p class="text-center pb-10 text-[10px] text-[#A8A297] tracking-widest uppercase font-light">The Journey of Balance</p>
-    <div class="max-w-md mx-auto px-1 space-y-10 pb-40">
+  
+  <div class="max-w-7xl mx-auto px-6 pb-40">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
       <% @health_records.each do |health_record| %>
         <%= render health_record %>
       <% end %>
     </div>
+  </div>
 </div>
