@@ -49,7 +49,7 @@
         </div>
 
         <%# DBに保存される値の隠しスペース%>
-        <%= f.hidden_field range[:field], value: 0, id: "#{range[:field]}-hidden" %>
+        <%= f.hidden_field range[:field], value: current_val, id: "#{range[:field]}-hidden" %>
 
         <%# スライダーの見た目 %>
         <%= range_field_tag "#{range[:field]}_display", current_val_100, min: 0, max: 100,

@@ -25,14 +25,14 @@
             <span class="text-[10px] pb-2"><%= item[:label] %></span>
             <div class="w-28 h-28 rounded-full flex items-center justify-center mb-2 relative"
                  style="background: conic-gradient(<%= 
-                    if item[:val] >= 70 then "#c4232e" elsif item[:val] >= 50 then "#eab308" else "#a6bf6d" end 
+                    if item[:val] >= 80 then "#c4232e" elsif item[:val] >= 50 then "#eab308" else "#a6bf6d" end 
                  %> <%= item[:val] %>%, #f1f0ee 0);">
               <div class="w-[calc(100%-8px)] h-[calc(100%-8px)] bg-white rounded-full flex items-center justify-center">
                 <span class="text-sm font-bold">
                   <% if item[:label] == "ねむりの質" %>
                     <%= item[:val] >= 80 ? "うとうと" : (item[:val] <= 50 ? "ぐっすり" : "まあまあ") %>
                   <% else %>
-                    <%= item[:val] >= 80 ? "高め" : (item[:val] >= 60 ? "まあまあ" : "低め") %>
+                    <%= item[:val] >= 80 ? "高め" : (item[:val] >= 50 ? "まあまあ" : "低め") %>
                   <% end %>
                 </span>
               </div>
