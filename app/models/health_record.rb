@@ -6,6 +6,7 @@ class HealthRecord < ApplicationRecord
   validates :feeling, presence: true
   validates :fatigue_level, presence: true
   validates :stress_level, presence: true
+  validate :once_per_day, on: :create
 
   def kampo_advice(manual_symptoms = nil)
 
@@ -27,12 +28,12 @@ class HealthRecord < ApplicationRecord
         return {
           type: "気滞（きたい）",
           message: "ストレスが胃腸の動きを邪魔しているのかもしれません。シトラス系の香りで巡りを整え、軽くお散歩してリフレッシュするのもよいでしょう",
-          food: "玉ねぎ、みかん、グレープフルーツ、しそ、三つ葉"}
+          foods: "玉ねぎ、みかん、グレープフルーツ、しそ、三つ葉"}
       elsif s_names.include?("肩こり")
         return { 
           type: "気滞 + 瘀血",
           message: "緊張で血の流れがギュッと止まりがちかもしれません。深呼吸をして肩の力を抜き、まずは心をゆるめる時間をつくってみましょう。",
-          food: "チンゲン菜、パセリ、お酢、らっきょう、なす"
+          foods: "チンゲン菜、パセリ、お酢、らっきょう、なす"
         }
       end
     end
@@ -130,5 +131,14 @@ class HealthRecord < ApplicationRecord
       message: "心身のバランスが整っています。この心地よいリズムを大切に、今日もあなたのペースで素敵な一日を過ごしてくださいね。",
       foods: "今の調子をキープしましょう！"  
     }
+  end
+
+  private
+
+  def once_per_day
+    if user.health_records.where(created_at: Time.zone.now.all_day).exists?
+      errors.add(:base, "今日の記録はすでに保存されています")
+      errors.delete(:feeling) if errors.has_key?(:feeling)
+    end
   end
 end
