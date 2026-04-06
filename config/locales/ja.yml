@@ -5,7 +5,7 @@ ja:
       health_record: "体調記録"
     attributes:
       user:
-        name: "なまえ"
+        name: "おなまえ"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "パスワード（確認用）"
@@ -15,15 +15,22 @@ ja:
         stress_level: "ストレス度"
         sleep_level: "不眠度"
         memo: "メモ"
+
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "は登録できません"
         
   errors:
-    templete:
+    template:
       header:
         one: "%{model}に1件のエラーが発生しました"
         other: "%{model}に%{count}件のエラーが発生しました"
     messages:
       blank: "を入力してください"
-      taken: "はすでに存在します"
+      taken: "は使用できません"
       too_short: "は%{count}文字以上で入力してください"
       too_long: "は%{count}文字以内で入力してください"
       invalid: "は不正な値です"
