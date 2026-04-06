@@ -8,6 +8,7 @@ ja:
         name: "なまえ"
         email: "メールアドレス"
         password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
       health_record:
         feeling: "気分"
         fatigue_level: "疲労度"
@@ -16,8 +17,20 @@ ja:
         memo: "メモ"
         
   errors:
+    templete:
+      header:
+        one: "%{model}に1件のエラーが発生しました"
+        other: "%{model}に%{count}件のエラーが発生しました"
     messages:
       blank: "を入力してください"
+      taken: "はすでに存在します"
+      too_short: "は%{count}文字以上で入力してください"
+      too_long: "は%{count}文字以内で入力してください"
+      invalid: "は不正な値です"
+      confirmation: "と入力が一致していません"
+      not_a_number: "は数値で入力してください"
+      greater_than_or_equal_to: "は%{count}以上の値にしてください"
+      less_than_or_equal_to: "は%{count}以下の値にしてください"
       not_saved:
         one: "1件のエラーにより保存できませんでした"
         other: "%{count}件のエラーにより保存できませんでした"
