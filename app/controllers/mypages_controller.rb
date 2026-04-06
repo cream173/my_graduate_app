@@ -14,6 +14,7 @@ class MypagesController < ApplicationController
     if @user.update(user_params)
       redirect_to mypage_path(@user), notice: "ユーザー情報を更新しました"
     else
+      flash.now[:alert] = "更新に失敗しました"
       render :edit, status: :unprocessable_entity
     end
   end

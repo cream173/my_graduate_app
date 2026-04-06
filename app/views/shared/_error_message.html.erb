@@ -1,9 +1,10 @@
 <% if object.errors.any? %>
-  <div class="bg-[#a35155] text-white max-w-md mx-auto mb-8 p-5 rounded-lg shadow-sm page-fade">
+  <div class="bg-[#a35155] text-white text-center max-w-md mx-auto mb-8 p-3 rounded-lg shadow-sm page-fade scroll-mt-24">
     <ul class="list-disc list-inside space-y-2 text-sm">
       <% object.errors.full_messages.each do |message| %>
-        <li class="font-medium"><%= message %></li>
+        <li class="font-medium list-none"><%= message %></li>
       <% end %>
     </ul>
   </div>
+  
 <% end %>

@@ -1,7 +1,14 @@
-<%= form_with(model: health_record, local: true, data: { turbo: false }, class: "max-w-md mx-auto my-10 bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 relative overflow-hidden") do |f| %>
+<%= form_with(model: health_record, local: true, data: { turbo: false }, class: "max-w-md mx-auto mt-20 mb-32 bg-white rounded-[40px] p-8 shadow-sm border border-stone-100 relative") do |f| %>
   
-  <h1 class="text-center text-3xl font-serif">体調記録</h1>
-  <p class="text-center text-[10px] text-stone-400 tracking-widest uppercase font-light pb-12">The Journey of Balance</p>
+  <h1 class="text-center text-3xl ">
+    <%= health_record.persisted? ? "記録編集" : "体調記録" %>
+  </h1>
+  <p class="text-center text-[10px] text-stone-400 tracking-widest uppercase font-light pb-12">
+    <%= health_record.persisted? ? "Edit Your Journey" : "The Journey of Balance" %>
+  </p>
+
+  <%= render "shared/error_message", object: health_record %>
+  
   
   <%# 今日の気分 %>
   <section class="mb-10">
@@ -25,25 +32,29 @@
   </section>
 
   <%# スライダー項目%>
-<div class="mb-10">
+  <div class="mb-10">
     <% [
       { field: :stress_level, label: 'ストレス', min: '低', max: '高' },
       { field: :fatigue_level, label: 'からだの疲れ', min: '低', max: '高' },
       { field: :sleep_level, label: 'ねむりの質', min: 'ぐっすり', max: 'うとうと' }
     ].each do |range| %>
+
+    <% current_val = health_record.send(range[:field]) || 0 %>
+    <% current_val_100 = current_val * 20 %>
+
       <div class="space-y-1">
         <div class="flex justify-between items-center">
           <label class="font-bold"><%= range[:label] %></label>
-          <span class="hidden" id="<%= range[:field] %>-val">0</span>
+          <span class="hidden" id="<%= range[:field] %>-val"><%= current_val %></span>
         </div>
 
         <%# DBに保存される値の隠しスペース%>
-        <%= f.hidden_field range[:field], value: 0, id: "#{range[:field]}-hidden" %>
+        <%= f.hidden_field range[:field], value: current_val, id: "#{range[:field]}-hidden" %>
 
         <%# スライダーの見た目 %>
-        <%= range_field_tag "#{range[:field]}_display", 0, min: 0, max: 100,
+        <%= range_field_tag "#{range[:field]}_display", current_val_100, min: 0, max: 100,
             class: "w-full h-2 rounded-lg appearance-none cursor-pointer accent-stone-400",
-            style: "background: linear-gradient(to right, #a8a29e 0%, #e7e5e4 0%);",
+            style: "background: linear-gradient(to right, #a8a29e #{current_val_100}%, #e7e5e4 #{current_val_100}%);",
             oninput: "
               const val100 = this.value;
               const val5 = Math.round(val100 / 20);
@@ -90,7 +101,8 @@
     <%= f.submit "記録を保存する", 
         class: "w-full py-4 bg-[#d17770] text-white rounded-xl shadow-lg hover:bg-[#cc6a63] transition-colors cursor-pointer" %>
     
-    <%= link_to "キャンセル", root_path, 
+    <% cancel_path = health_record.persisted? ? health_records_path : root_path %>
+    <%= link_to "キャンセル", cancel_path, 
         class: "block w-full text-center py-2 text-sm hover:text-stone-600" %>
   </div>
 <% end %>
